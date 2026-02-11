@@ -75,6 +75,36 @@ int main()
 
     std::cout << "\n=== Vec3 Tests ===\n\n";
 
+    // Vec2 VectorReflect
+    {
+        Vec2 v(0.0f, -1.0f);  // moving down
+        Vec2 n(0.0f, 1.0f);  // upward normal
+
+        Vec2 result = Vec2::VectorReflect(v, n);
+
+        bool pass = FloatEquals(result.x, 0.0f) &&
+            FloatEquals(result.y, 1.0f);
+
+        PrintResult("Vec2 VectorReflect", pass);
+    }
+
+    // Vec2 VectorLerp
+    {
+        Vec2 a(0.0f, 0.0f);
+        Vec2 b(10.0f, 20.0f);
+
+        Vec2 r0 = Vec2::VectorLerp(a, b, 0.0f);
+        Vec2 rHalf = Vec2::VectorLerp(a, b, 0.5f);
+        Vec2 r1 = Vec2::VectorLerp(a, b, 1.0f);
+
+        bool pass = FloatEquals(r0.x, 0.0f) && FloatEquals(r0.y, 0.0f) &&
+            FloatEquals(rHalf.x, 5.0f) && FloatEquals(rHalf.y, 10.0f) &&
+            FloatEquals(r1.x, 10.0f) && FloatEquals(r1.y, 20.0f);
+
+        PrintResult("Vec2 VectorLerp", pass);
+    }
+
+
     // Vec3 Add
     {
         Vec3 a(1.0f, 2.0f, 3.0f);

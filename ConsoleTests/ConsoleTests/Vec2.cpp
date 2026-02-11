@@ -42,7 +42,6 @@ float Vec2::Magnitude() const
 {
     return std::sqrt(x * x + y * y);
 }
-// ADDED: Implemented Magnitude for Vec2
 
 Vec2 Vec2::Normalize() const
 {
@@ -53,6 +52,19 @@ Vec2 Vec2::Normalize() const
 
     return Vec2(x / mag, y / mag);
 }
-// ADDED: Normalize implementation
+
+Vec2 Vec2::VectorReflect(const Vec2& v, const Vec2& n)
+{
+    float d = Dot(v, n);
+    return Subtract(v, Scale(n, 2.0f * d));
+} // ADDED: VectorReflect (Pong requirement)
+
+Vec2 Vec2::VectorLerp(const Vec2& a, const Vec2& b, float t)
+{
+    if (t <= 0.0f) return a;
+    if (t >= 1.0f) return b;
+
+    return Add(a, Scale(Subtract(b, a), t));
+} // ADDED: VectorLerp (Pong requirement)
 
 
