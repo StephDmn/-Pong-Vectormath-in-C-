@@ -13,10 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="VectorLib">
+      <UniqueIdentifier>{ee624f0a-307d-4804-bf98-7ef96d1db032}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleTests.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Vec2.cpp">
+      <Filter>VectorLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec3.cpp">
+      <Filter>VectorLib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Vec2.h">
+      <Filter>VectorLib</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec3.h">
+      <Filter>VectorLib</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
