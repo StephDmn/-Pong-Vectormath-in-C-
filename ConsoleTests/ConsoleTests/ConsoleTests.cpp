@@ -9,13 +9,22 @@ bool FloatEquals(float a, float b, float epsilon = 0.0001f)
     return std::fabs(a - b) < epsilon;
 }
 
-void PrintResult(const std::string& testName, bool result)
+void PrintResult(const std::string& testName, bool result, int& passed, int& failed)
 {
     if (result)
+    {
+        ++passed;
         std::cout << "[PASS] " << testName << "\n";
+    }
     else
+    {
+        ++failed;
         std::cout << "[FAIL] " << testName << "\n";
+    }
 }
+
+int passed = 0;
+int failed = 0;
 
 int main()
 {
@@ -30,7 +39,7 @@ int main()
         bool pass = FloatEquals(result.x, 4.0f) &&
             FloatEquals(result.y, 6.0f);
 
-        PrintResult("Vec2 Add", pass);
+        PrintResult("Vec2 Add", pass, passed, failed);
     }
 
     // Vec2 Subtract
@@ -42,7 +51,7 @@ int main()
         bool pass = FloatEquals(result.x, 3.0f) &&
             FloatEquals(result.y, 3.0f);
 
-        PrintResult("Vec2 Subtract", pass);
+        PrintResult("Vec2 Subtract", pass, passed, failed);
     }
 
     // Vec2 Dot
@@ -52,7 +61,7 @@ int main()
         float result = Vec2::Dot(a, b);
 
         bool pass = FloatEquals(result, 11.0f);
-        PrintResult("Vec2 Dot", pass);
+        PrintResult("Vec2 Dot", pass, passed, failed);
     }
 
     // Vec2 Magnitude
@@ -61,7 +70,7 @@ int main()
         float result = v.Magnitude();
 
         bool pass = FloatEquals(result, 5.0f);
-        PrintResult("Vec2 Magnitude", pass);
+        PrintResult("Vec2 Magnitude", pass, passed, failed);
     }
 
     // Vec2 Normalize
@@ -70,7 +79,7 @@ int main()
         Vec2 n = v.Normalize();
 
         bool pass = FloatEquals(n.x, 0.6f) && FloatEquals(n.y, 0.8f);
-        PrintResult("Vec2 Normalize", pass);
+        PrintResult("Vec2 Normalize", pass, passed, failed);
     }
 
     std::cout << "\n=== Vec3 Tests ===\n\n";
@@ -85,7 +94,7 @@ int main()
         bool pass = FloatEquals(result.x, 0.0f) &&
             FloatEquals(result.y, 1.0f);
 
-        PrintResult("Vec2 VectorReflect", pass);
+        PrintResult("Vec2 VectorReflect", pass, passed, failed);
     }
 
     // Vec2 VectorLerp
@@ -101,7 +110,7 @@ int main()
             FloatEquals(rHalf.x, 5.0f) && FloatEquals(rHalf.y, 10.0f) &&
             FloatEquals(r1.x, 10.0f) && FloatEquals(r1.y, 20.0f);
 
-        PrintResult("Vec2 VectorLerp", pass);
+        PrintResult("Vec2 VectorLerp", pass, passed, failed);
     }
 
 
@@ -115,7 +124,7 @@ int main()
             FloatEquals(result.y, 7.0f) &&
             FloatEquals(result.z, 9.0f);
 
-        PrintResult("Vec3 Add", pass);
+        PrintResult("Vec3 Add", pass, passed, failed);
     }
 
     // Vec3 Subtract
@@ -128,7 +137,7 @@ int main()
             FloatEquals(result.y, 3.0f) &&
             FloatEquals(result.z, 2.0f);
 
-        PrintResult("Vec3 Subtract", pass);
+        PrintResult("Vec3 Subtract", pass, passed, failed);
     }
 
     // Vec3 Scale
@@ -140,7 +149,7 @@ int main()
             FloatEquals(result.y, 4.0f) &&
             FloatEquals(result.z, 6.0f);
 
-        PrintResult("Vec3 Scale", pass);
+        PrintResult("Vec3 Scale", pass, passed, failed);
     }
 
     // Vec3 Dot
@@ -150,7 +159,7 @@ int main()
         float result = Vec3::Dot(a, b);
 
         bool pass = FloatEquals(result, 32.0f);
-        PrintResult("Vec3 Dot", pass);
+        PrintResult("Vec3 Dot", pass, passed, failed);
     }
 
     // Vec3 Magnitude
@@ -159,7 +168,7 @@ int main()
         float result = v.Magnitude();
 
         bool pass = FloatEquals(result, 7.0f);
-        PrintResult("Vec3 Magnitude", pass);
+        PrintResult("Vec3 Magnitude", pass, passed, failed);
     }
 
     // Vec3 Normalize
@@ -171,7 +180,7 @@ int main()
             FloatEquals(n.y, 0.6f) &&
             FloatEquals(n.z, 0.8f);
 
-        PrintResult("Vec3 Normalize", pass);
+        PrintResult("Vec3 Normalize", pass, passed, failed);
     }
 
     // Vec3 Cross
@@ -184,10 +193,13 @@ int main()
             FloatEquals(result.y, 0.0f) &&
             FloatEquals(result.z, 1.0f);
 
-        PrintResult("Vec3 Cross", pass);
+        PrintResult("Vec3 Cross", pass, passed, failed);
     }
 
-    std::cout << "\nTests finished.\n";
+    std::cout << "\n=== Summary ===\n";
+    std::cout << "Passed: " << passed << "\n";
+    std::cout << "Failed: " << failed << "\n";
+    std::cout << "Total : " << (passed + failed) << "\n";
 
     return 0;
 }
