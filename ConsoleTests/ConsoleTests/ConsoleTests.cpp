@@ -72,6 +72,15 @@ int main()
         bool pass = FloatEquals(result, 5.0f);
         PrintResult("Vec2 Magnitude", pass, passed, failed);
     }
+    
+    // Vec2 Magnitude (Edge Case: Zero Vector)
+    {
+        Vec2 v(0.0f, 0.0f);
+        float result = v.Magnitude();
+
+        bool pass = FloatEquals(result, 0.0f);
+        PrintResult("Vec2 Edge: Magnitude Zero Vector", pass, passed, failed);
+    }
 
     // Vec2 Normalize
     {
@@ -81,6 +90,18 @@ int main()
         bool pass = FloatEquals(n.x, 0.6f) && FloatEquals(n.y, 0.8f);
         PrintResult("Vec2 Normalize", pass, passed, failed);
     }
+
+    // Vec2 Normalize (Edge Case: Zero Vector)
+    {
+        Vec2 v(0.0f, 0.0f);
+        Vec2 n = v.Normalize();
+
+        bool notNaN = (n.x == n.x) && (n.y == n.y);
+        bool isZero = FloatEquals(n.x, 0.0f) && FloatEquals(n.y, 0.0f);
+
+        PrintResult("Vec2 Edge: Normalize Zero Vector", notNaN && isZero, passed, failed);
+    }
+
 
     std::cout << "\n=== Vec3 Tests ===\n\n";
 
@@ -183,6 +204,19 @@ int main()
         PrintResult("Vec3 Normalize", pass, passed, failed);
     }
 
+    // Vec3 Normalize (Edge Case: Zero Vector)
+    {
+        Vec3 v(0.0f, 0.0f, 0.0f);
+        Vec3 n = v.Normalize();
+
+        bool notNaN = (n.x == n.x) && (n.y == n.y) && (n.z == n.z);
+        bool isZero = FloatEquals(n.x, 0.0f) &&
+            FloatEquals(n.y, 0.0f) &&
+            FloatEquals(n.z, 0.0f);
+
+        PrintResult("Vec3 Edge: Normalize Zero Vector", notNaN && isZero, passed, failed);
+    }
+
     // Vec3 Cross
     {
         Vec3 a(1.0f, 0.0f, 0.0f);
@@ -194,6 +228,20 @@ int main()
             FloatEquals(result.z, 1.0f);
 
         PrintResult("Vec3 Cross", pass, passed, failed);
+    }
+
+    // Vec3 Cross (Edge Case: Parallel Vectors -> Zero Vector)
+    {
+        Vec3 a(2.0f, 0.0f, 0.0f);
+        Vec3 b(5.0f, 0.0f, 0.0f);
+
+        Vec3 result = Vec3::Cross(a, b);
+
+        bool pass = FloatEquals(result.x, 0.0f) &&
+            FloatEquals(result.y, 0.0f) &&
+            FloatEquals(result.z, 0.0f);
+
+        PrintResult("Vec3 Edge: Cross Parallel Vectors", pass, passed, failed);
     }
 
     std::cout << "\n=== Summary ===\n";
