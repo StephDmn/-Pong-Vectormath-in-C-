@@ -32,5 +32,27 @@ Vec2 Vec2::Scale(const Vec2& v, float s)
 {
     return Vec2(v.x * s, v.y * s);
 }
-// FIX: completed function signature and body
+
+float Vec2::Dot(const Vec2& a, const Vec2& b)
+{
+    return a.x * b.x + a.y * b.y;
+}
+
+float Vec2::Magnitude() const
+{
+    return std::sqrt(x * x + y * y);
+}
+// ADDED: Implemented Magnitude for Vec2
+
+Vec2 Vec2::Normalize() const
+{
+    float mag = Magnitude();
+
+    if (mag == 0.0f)
+        return Vec2(0.0f, 0.0f);
+
+    return Vec2(x / mag, y / mag);
+}
+// ADDED: Normalize implementation
+
 

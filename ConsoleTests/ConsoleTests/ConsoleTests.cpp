@@ -1,20 +1,163 @@
-// ConsoleTests.cpp : Este arquivo contém a função 'main'. A execução do programa começa e termina ali.
-//
-
 #include <iostream>
+#include <cmath>
+
+#include "Vec2.h"
+#include "Vec3.h"
+
+bool FloatEquals(float a, float b, float epsilon = 0.0001f)
+{
+    return std::fabs(a - b) < epsilon;
+}
+
+void PrintResult(const std::string& testName, bool result)
+{
+    if (result)
+        std::cout << "[PASS] " << testName << "\n";
+    else
+        std::cout << "[FAIL] " << testName << "\n";
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << "=== Vec2 Tests ===\n\n";
+
+    // Vec2 Add
+    {
+        Vec2 a(1.0f, 2.0f);
+        Vec2 b(3.0f, 4.0f);
+        Vec2 result = Vec2::Add(a, b);
+
+        bool pass = FloatEquals(result.x, 4.0f) &&
+            FloatEquals(result.y, 6.0f);
+
+        PrintResult("Vec2 Add", pass);
+    }
+
+    // Vec2 Subtract
+    {
+        Vec2 a(5.0f, 4.0f);
+        Vec2 b(2.0f, 1.0f);
+        Vec2 result = Vec2::Subtract(a, b);
+
+        bool pass = FloatEquals(result.x, 3.0f) &&
+            FloatEquals(result.y, 3.0f);
+
+        PrintResult("Vec2 Subtract", pass);
+    }
+
+    // Vec2 Dot
+    {
+        Vec2 a(1.0f, 2.0f);
+        Vec2 b(3.0f, 4.0f);
+        float result = Vec2::Dot(a, b);
+
+        bool pass = FloatEquals(result, 11.0f);
+        PrintResult("Vec2 Dot", pass);
+    }
+
+    // Vec2 Magnitude
+    {
+        Vec2 v(3.0f, 4.0f);
+        float result = v.Magnitude();
+
+        bool pass = FloatEquals(result, 5.0f);
+        PrintResult("Vec2 Magnitude", pass);
+    }
+
+    // Vec2 Normalize
+    {
+        Vec2 v(3.0f, 4.0f);
+        Vec2 n = v.Normalize();
+
+        bool pass = FloatEquals(n.x, 0.6f) && FloatEquals(n.y, 0.8f);
+        PrintResult("Vec2 Normalize", pass);
+    }
+
+    std::cout << "\n=== Vec3 Tests ===\n\n";
+
+    // Vec3 Add
+    {
+        Vec3 a(1.0f, 2.0f, 3.0f);
+        Vec3 b(4.0f, 5.0f, 6.0f);
+        Vec3 result = Vec3::Add(a, b);
+
+        bool pass = FloatEquals(result.x, 5.0f) &&
+            FloatEquals(result.y, 7.0f) &&
+            FloatEquals(result.z, 9.0f);
+
+        PrintResult("Vec3 Add", pass);
+    }
+
+    // Vec3 Subtract
+    {
+        Vec3 a(5.0f, 4.0f, 3.0f);
+        Vec3 b(2.0f, 1.0f, 1.0f);
+        Vec3 result = Vec3::Subtract(a, b);
+
+        bool pass = FloatEquals(result.x, 3.0f) &&
+            FloatEquals(result.y, 3.0f) &&
+            FloatEquals(result.z, 2.0f);
+
+        PrintResult("Vec3 Subtract", pass);
+    }
+
+    // Vec3 Scale
+    {
+        Vec3 v(1.0f, 2.0f, 3.0f);
+        Vec3 result = Vec3::Scale(v, 2.0f);
+
+        bool pass = FloatEquals(result.x, 2.0f) &&
+            FloatEquals(result.y, 4.0f) &&
+            FloatEquals(result.z, 6.0f);
+
+        PrintResult("Vec3 Scale", pass);
+    }
+
+    // Vec3 Dot
+    {
+        Vec3 a(1.0f, 2.0f, 3.0f);
+        Vec3 b(4.0f, 5.0f, 6.0f);
+        float result = Vec3::Dot(a, b);
+
+        bool pass = FloatEquals(result, 32.0f);
+        PrintResult("Vec3 Dot", pass);
+    }
+
+    // Vec3 Magnitude
+    {
+        Vec3 v(2.0f, 3.0f, 6.0f);
+        float result = v.Magnitude();
+
+        bool pass = FloatEquals(result, 7.0f);
+        PrintResult("Vec3 Magnitude", pass);
+    }
+
+    // Vec3 Normalize
+    {
+        Vec3 v(0.0f, 3.0f, 4.0f);
+        Vec3 n = v.Normalize();
+
+        bool pass = FloatEquals(n.x, 0.0f) &&
+            FloatEquals(n.y, 0.6f) &&
+            FloatEquals(n.z, 0.8f);
+
+        PrintResult("Vec3 Normalize", pass);
+    }
+
+    // Vec3 Cross
+    {
+        Vec3 a(1.0f, 0.0f, 0.0f);
+        Vec3 b(0.0f, 1.0f, 0.0f);
+        Vec3 result = Vec3::Cross(a, b);
+
+        bool pass = FloatEquals(result.x, 0.0f) &&
+            FloatEquals(result.y, 0.0f) &&
+            FloatEquals(result.z, 1.0f);
+
+        PrintResult("Vec3 Cross", pass);
+    }
+
+    std::cout << "\nTests finished.\n";
+
+    return 0;
 }
-
-// Executar programa: Ctrl + F5 ou Menu Depurar > Iniciar Sem Depuração
-// Depurar programa: F5 ou menu Depurar > Iniciar Depuração
-
-// Dicas para Começar: 
-//   1. Use a janela do Gerenciador de Soluções para adicionar/gerenciar arquivos
-//   2. Use a janela do Team Explorer para conectar-se ao controle do código-fonte
-//   3. Use a janela de Saída para ver mensagens de saída do build e outras mensagens
-//   4. Use a janela Lista de Erros para exibir erros
-//   5. Ir Para o Projeto > Adicionar Novo Item para criar novos arquivos de código, ou Projeto > Adicionar Item Existente para adicionar arquivos de código existentes ao projeto
-//   6. No futuro, para abrir este projeto novamente, vá para Arquivo > Abrir > Projeto e selecione o arquivo. sln
