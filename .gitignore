@@ -1,1 +1,23 @@
-/ConsoleTests/.vs
+# Visual Studio
+.vs/
+
+# Build folders
+Debug/
+Release/
+x64/
+x86/
+
+# Compiled files
+*.obj
+*.ilk
+*.pdb
+*.idb
+*.log
+*.tlog
+
+# User-specific files
+*.vcxproj.user
+*.VC.db
+
+# Temporary files
+*.tmp
