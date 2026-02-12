@@ -134,6 +134,22 @@ int main()
         PrintResult("Vec2 VectorLerp", pass, passed, failed);
     }
 
+    // Vec2 VectorLerp (Edge Case: t outside [0,1] - Clamped Behavior)
+    {
+        Vec2 a(0.0f, 0.0f);
+        Vec2 b(10.0f, 20.0f);
+
+        Vec2 rNeg = Vec2::VectorLerp(a, b, -1.0f);
+        Vec2 rOver = Vec2::VectorLerp(a, b, 2.0f);
+
+        bool pass = FloatEquals(rNeg.x, 0.0f) &&
+            FloatEquals(rNeg.y, 0.0f) &&
+            FloatEquals(rOver.x, 10.0f) &&
+            FloatEquals(rOver.y, 20.0f);
+
+        PrintResult("Vec2 Edge: Lerp Clamped Bounds", pass, passed, failed);
+    }
+
 
     // Vec3 Add
     {
@@ -171,6 +187,18 @@ int main()
             FloatEquals(result.z, 6.0f);
 
         PrintResult("Vec3 Scale", pass, passed, failed);
+    }
+
+    // Vec3 Scale (Edge Case: Negative Scalar)
+    {
+        Vec3 v(1.0f, -2.0f, 3.0f);
+        Vec3 result = Vec3::Scale(v, -2.0f);
+
+        bool pass = FloatEquals(result.x, -2.0f) &&
+            FloatEquals(result.y, 4.0f) &&
+            FloatEquals(result.z, -6.0f);
+
+        PrintResult("Vec3 Edge: Scale Negative Scalar", pass, passed, failed);
     }
 
     // Vec3 Dot
