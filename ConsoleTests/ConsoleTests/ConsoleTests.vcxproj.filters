@@ -21,22 +21,22 @@
     <ClCompile Include="ConsoleTests.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Vec2.cpp">
+    <ClCompile Include="VectorLib\Vec2.cpp">
       <Filter>VectorLib</Filter>
     </ClCompile>
-    <ClCompile Include="Vec3.cpp">
+    <ClCompile Include="VectorLib\Vec3.cpp">
       <Filter>VectorLib</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Vec2.h">
-      <Filter>VectorLib</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec3.h">
-      <Filter>VectorLib</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="VectorLib\Vec2.h">
+      <Filter>VectorLib</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorLib\Vec3.h">
+      <Filter>VectorLib</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
