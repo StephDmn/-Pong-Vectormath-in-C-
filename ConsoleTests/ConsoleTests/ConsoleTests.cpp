@@ -1,8 +1,9 @@
 #include <iostream>
 #include <cmath>
 
-#include "Vec2.h"
-#include "Vec3.h"
+#include "VectorLib/Vec2.h"
+#include "VectorLib/Vec3.h"
+
 
 bool FloatEquals(float a, float b, float epsilon = 0.0001f)
 {

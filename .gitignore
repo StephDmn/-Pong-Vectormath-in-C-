@@ -37,3 +37,5 @@ x86/
 /Pong-VectorMath/*.sln
 /Pong-VectorMath/.vs/
 
+*.filters
+*.log
