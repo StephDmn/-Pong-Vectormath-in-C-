@@ -1,1 +1,39 @@
-/ConsoleTests/.vs
+# Visual Studio
+.vs/
+
+# Build folders
+Debug/
+Release/
+x64/
+x86/
+
+# Compiled files
+*.obj
+*.ilk
+*.pdb
+*.idb
+*.log
+*.tlog
+
+# User-specific files
+*.vcxproj.user
+*.VC.db
+
+# Temporary files
+*.tmp
+
+# Unity (ignore generated stuff)
+**/Library/
+**/Temp/
+**/Logs/
+**/Obj/
+/**/Build/
+/**/Builds/
+.vs/
+
+
+# Visual Studio Unity
+/Pong-VectorMath/*.csproj
+/Pong-VectorMath/*.sln
+/Pong-VectorMath/.vs/
+
