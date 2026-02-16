@@ -39,3 +39,5 @@ x86/
 
 *.filters
 *.log
+*.index
+*.settings

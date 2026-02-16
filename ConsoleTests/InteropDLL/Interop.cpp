@@ -1,3 +1,4 @@
+#include "pch.h" // REQUIRED for precompiled headers (Visual Studio)
 #include "Interop.h"
 
 // Include your real library headers (from VectorLib)
