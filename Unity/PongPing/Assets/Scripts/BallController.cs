@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 using static VectorMathDLLTest;
+using TMPro;
 
 // TYPE: MonoBehaviour
 public class BallController : MonoBehaviour
@@ -35,6 +36,10 @@ public class BallController : MonoBehaviour
     public float PaddleWidth = 0.5f;
     public float PaddleHeight = 2.5f;
     public float BallSize = 0.25f;
+
+    public TextMeshProUGUI ScoreText;
+    private int leftScore = 0;
+    private int rightScore = 0;
 
     void Start()
     {
@@ -74,11 +79,22 @@ public class BallController : MonoBehaviour
         {
             velocity = Vec2_Reflect(velocity, new Vec2_I(-1f, 0f)); // normal points left
         }
-        // Reset when off-screen (left/right)
-        if (position.x > MaxX || position.x < MinX)
+        // score + reset when off-screen (left/right)
+        if (position.x > MaxX)
         {
+            leftScore++;
+            if (ScoreText != null) ScoreText.text = leftScore + " : " + rightScore;
+
             position = new Vec2_I(0f, 0f);
-            velocity = Vec2_Normalize(new Vec2_I(1f, 1f));
+            velocity = Vec2_Normalize(new Vec2_I(1f, Random.Range(-0.5f, 0.5f)));
+        }
+        else if (position.x < MinX)
+        {
+            rightScore++;
+            if (ScoreText != null) ScoreText.text = leftScore + " : " + rightScore;
+
+            position = new Vec2_I(0f, 0f);
+            velocity = Vec2_Normalize(new Vec2_I(-1f, Random.Range(-0.5f, 0.5f)));
         }
 
         // Apply to Unity ONLY for rendering (no UnityEngine.Vector2 used)
